@@ -1,4 +1,4 @@
-// import { Toast } from "@ant-design/react-native";
+import { Toast } from "@ant-design/react-native";
 import axios, { AxiosRequestConfig } from "axios";
 
 const MOCK_API_PREFIX = "http://yapi.smart-xwork.cn/mock/186077";
@@ -22,9 +22,9 @@ axios.interceptors.response.use(
   (res) => res,
   (error) => {
     console.log(error);
-    // Toast.fail({
-    //   content: error.message,
-    // });
+    Toast.fail({
+      content: error.message,
+    });
     return Promise.reject(error);
   }
 );
@@ -46,9 +46,9 @@ export default function request<T>(
   return axios(axiosConfig)
     .then((res) => {
       if (!res.data.success) {
-        // Toast.fail({
-        //   content: res.data.message,
-        // });
+        Toast.fail({
+          content: res.data.message,
+        });
       }
       return Promise.resolve(res.data);
     })
