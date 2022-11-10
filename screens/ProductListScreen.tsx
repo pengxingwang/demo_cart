@@ -1,9 +1,11 @@
+import { WhiteSpace, WingBlank } from "@ant-design/react-native";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { ProductItem } from "../components/ProductItem";
 
 import { Text, View } from "../components/Themed";
+import { PRODUCT_LIST } from "../constants/DataSource";
 import { getProductList } from "../services/productItem";
 import { RootTabScreenProps } from "../types";
 
@@ -16,13 +18,19 @@ export default function ProductListScreen({
     async () => {
       const res = await getProductList();
       if (res.success) {
-        return res.data;
+        // 因为mock的数据只能重复，为了购物车功能多样化，这里直接写死数据
+        return PRODUCT_LIST;
       }
     }
   );
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      automaticallyAdjustContentInsets={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+    >
       {isLoading && (
         <>
           <Text>Loading...</Text>
@@ -31,11 +39,17 @@ export default function ProductListScreen({
       {isSuccess && (
         <View>
           {data?.map((item, index) => (
-            <ProductItem key={index} record={item} />
+            <View key={index}>
+              <WhiteSpace />
+              <WingBlank>
+                <ProductItem record={item} />
+              </WingBlank>
+              <WhiteSpace size="lg" />
+            </View>
           ))}
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 }
 
