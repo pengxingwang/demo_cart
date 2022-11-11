@@ -22,7 +22,7 @@ axios.interceptors.response.use(
   (res) => res,
   (error) => {
     console.log(error);
-    Toast.fail({
+    Toast.info({
       content: error.message,
     });
     return Promise.reject(error);
@@ -46,7 +46,7 @@ export default function request<T>(
   return axios(axiosConfig)
     .then((res) => {
       if (!res.data.success) {
-        Toast.fail({
+        Toast.info({
           content: res.data.message,
         });
       }

@@ -1,35 +1,75 @@
-import { StyleSheet } from "react-native";
+import { Button, Flex, WhiteSpace, WingBlank } from "@ant-design/react-native";
+import React from "react";
+import { ScrollView, StyleSheet } from "react-native";
+import { CartItem } from "../components/CartItem";
 
-import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
+import { useCart } from "../context/cartProvider";
+import { RootTabScreenProps } from "../types";
 
-export default function ShoppingCartScreen() {
+export default function ShoppingCartScreen({
+  navigation,
+}: RootTabScreenProps<"ShoppingCartTab">) {
+  const { cartList, totalMoney } = useCart();
+  console.log(cartList, "cartList");
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="/screens/ShoppingCartScreen.tsx" />
+    <View style={styles.wrapper}>
+      <ScrollView
+        style={styles.container}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
+        {cartList.length === 0 && <Text>请选购商品</Text>}
+        {cartList.length > 0 && (
+          <View>
+            {cartList?.map((item, index) => (
+              <View key={index}>
+                <WhiteSpace />
+                <WingBlank>
+                  <CartItem record={item} index={index} />
+                </WingBlank>
+                <WhiteSpace size="lg" />
+              </View>
+            ))}
+          </View>
+        )}
+      </ScrollView>
+      <WingBlank>
+        <Flex style={styles.totalWrapper}>
+          <Flex.Item>
+            <Text style={styles.label}>共计</Text>
+          </Flex.Item>
+          <Flex.Item>
+            <Text style={styles.money}>￥{totalMoney}</Text>
+          </Flex.Item>
+        </Flex>
+        <Button type={"primary"} onPress={() => navigation.navigate("Detail")}>
+          结算
+        </Button>
+      </WingBlank>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    height: "100%",
+  },
   container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    height: "90%",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
+  totalWrapper: {
+    height: 50,
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
+  label: {
+    fontSize: 18,
+    fontWeight: "500",
+  },
+  money: {
+    fontSize: 18,
+    fontWeight: "500",
+    textAlign: "right",
   },
 });

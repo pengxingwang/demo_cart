@@ -1,7 +1,7 @@
 import { WhiteSpace, WingBlank } from "@ant-design/react-native";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView } from "react-native";
 import { ProductItem } from "../components/ProductItem";
 
 import { Text, View } from "../components/Themed";
@@ -26,16 +26,11 @@ export default function ProductListScreen({
 
   return (
     <ScrollView
-      style={styles.container}
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
     >
-      {isLoading && (
-        <>
-          <Text>Loading...</Text>
-        </>
-      )}
+      {isLoading && <Text>Loading...</Text>}
       {isSuccess && (
         <View>
           {data?.map((item, index) => (
@@ -52,9 +47,3 @@ export default function ProductListScreen({
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

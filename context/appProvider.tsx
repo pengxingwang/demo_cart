@@ -2,6 +2,7 @@ import { Provider } from "@ant-design/react-native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactNode } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { CartProvider } from "./cartProvider";
 
 // App所有的provider
 export const AppProviders = ({ children }: { children: ReactNode }) => {
@@ -17,7 +18,7 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
     <Provider>
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
-          {children}
+          <CartProvider>{children}</CartProvider>
         </QueryClientProvider>
       </SafeAreaProvider>
     </Provider>
