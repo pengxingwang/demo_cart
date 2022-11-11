@@ -5,7 +5,7 @@ import { CartItem } from "../components/CartItem";
 
 import { Text, View } from "../components/Themed";
 import { useCart } from "../context/cartProvider";
-import { RootTabScreenProps } from "../types";
+import { RootStackNavigation, RootTabScreenProps } from "../types";
 
 export default function ShoppingCartScreen({
   navigation,
@@ -31,7 +31,7 @@ export default function ShoppingCartScreen({
                   <CartItem
                     record={item}
                     index={index}
-                    navigate={navigation.navigate}
+                    navigation={navigation as unknown as RootStackNavigation}
                   />
                 </WingBlank>
                 <WhiteSpace size="lg" />

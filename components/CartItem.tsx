@@ -3,6 +3,7 @@ import React from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "../components/Themed";
 import { ICartItem, useCart } from "../context/cartProvider";
+import { RootStackNavigation } from "../types";
 
 /**
  * 购物车item
@@ -11,16 +12,16 @@ import { ICartItem, useCart } from "../context/cartProvider";
 export const CartItem = ({
   record,
   index,
-  navigate,
+  navigation,
 }: {
   record: ICartItem;
   index: number;
-  navigate: any;
+  navigation: RootStackNavigation;
 }) => {
   const { changeCartCount } = useCart();
 
   const handleRouter = () => {
-    navigate("ProductDetail", {
+    navigation.navigate("ProductDetail", {
       id: record.id,
     });
   };

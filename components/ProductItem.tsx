@@ -12,6 +12,7 @@ import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "../components/Themed";
 import { useCart } from "../context/cartProvider";
 import { IProductItem } from "../services/productItem";
+import { RootStackNavigation } from "../types";
 
 interface EventRadioGroup {
   target: { value: RadioValue };
@@ -22,12 +23,10 @@ interface EventRadioGroup {
  */
 export const ProductItem = ({
   record,
-  canNavigate = true,
-  navigate,
+  navigation,
 }: {
   record: IProductItem;
-  canNavigate?: boolean;
-  navigate: any;
+  navigation?: RootStackNavigation;
 }) => {
   // 单个商品数量
   const [count, setCount] = React.useState<number | null>(1);
@@ -68,8 +67,8 @@ export const ProductItem = ({
   };
 
   const handleRouter = () => {
-    if (canNavigate) {
-      navigate("ProductDetail", {
+    if (navigation) {
+      navigation.navigate("ProductDetail", {
         id: record.id,
       });
     }

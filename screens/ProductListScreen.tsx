@@ -7,7 +7,7 @@ import { ProductItem } from "../components/ProductItem";
 import { Text, View } from "../components/Themed";
 import { PRODUCT_LIST } from "../constants/DataSource";
 import { getProductList } from "../services/productItem";
-import { RootTabScreenProps } from "../types";
+import { RootStackNavigation, RootTabScreenProps } from "../types";
 
 export default function ProductListScreen({
   navigation,
@@ -37,7 +37,10 @@ export default function ProductListScreen({
             <View key={index}>
               <WhiteSpace />
               <WingBlank>
-                <ProductItem record={item} navigate={navigation.navigate} />
+                <ProductItem
+                  record={item}
+                  navigation={navigation as unknown as RootStackNavigation}
+                />
               </WingBlank>
               <WhiteSpace size="lg" />
             </View>
