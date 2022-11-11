@@ -37,7 +37,7 @@ export default function ProductListScreen({
             <View key={index}>
               <WhiteSpace />
               <WingBlank>
-                <ProductItem record={item} />
+                <ProductItem record={item} navigate={navigation.navigate} />
               </WingBlank>
               <WhiteSpace size="lg" />
             </View>

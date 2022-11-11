@@ -28,7 +28,11 @@ export default function ShoppingCartScreen({
               <View key={index}>
                 <WhiteSpace />
                 <WingBlank>
-                  <CartItem record={item} index={index} />
+                  <CartItem
+                    record={item}
+                    index={index}
+                    navigate={navigation.navigate}
+                  />
                 </WingBlank>
                 <WhiteSpace size="lg" />
               </View>
@@ -45,9 +49,7 @@ export default function ShoppingCartScreen({
             <Text style={styles.money}>￥{totalMoney}</Text>
           </Flex.Item>
         </Flex>
-        <Button type={"primary"} onPress={() => navigation.navigate("Detail")}>
-          结算
-        </Button>
+        <Button type={"primary"}>结算</Button>
       </WingBlank>
     </View>
   );

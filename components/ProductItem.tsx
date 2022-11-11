@@ -8,8 +8,8 @@ import {
 } from "@ant-design/react-native";
 import { RadioValue } from "@ant-design/react-native/lib/radio/PropsType";
 import React from "react";
-import { Image, StyleSheet } from "react-native";
-import { Text, View } from "../components/Themed";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Text } from "../components/Themed";
 import { useCart } from "../context/cartProvider";
 import { IProductItem } from "../services/productItem";
 
@@ -20,7 +20,15 @@ interface EventRadioGroup {
  * 商品item
  * @returns
  */
-export const ProductItem = ({ record }: { record: IProductItem }) => {
+export const ProductItem = ({
+  record,
+  canNavigate = true,
+  navigate,
+}: {
+  record: IProductItem;
+  canNavigate?: boolean;
+  navigate: any;
+}) => {
   // 单个商品数量
   const [count, setCount] = React.useState<number | null>(1);
   // 品规
@@ -59,8 +67,16 @@ export const ProductItem = ({ record }: { record: IProductItem }) => {
     });
   };
 
+  const handleRouter = () => {
+    if (canNavigate) {
+      navigate("ProductDetail", {
+        id: record.id,
+      });
+    }
+  };
+
   return (
-    <View style={styles.cell}>
+    <TouchableOpacity style={styles.cell} onPress={handleRouter}>
       <Image
         style={styles.img}
         source={{
@@ -104,7 +120,7 @@ export const ProductItem = ({ record }: { record: IProductItem }) => {
           </Button>
         </Flex.Item>
       </Flex>
-    </View>
+    </TouchableOpacity>
   );
 };
 

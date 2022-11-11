@@ -18,6 +18,7 @@ import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
+import ProductDetailScreen from "../screens/ProductDetailScreen";
 import ProductListScreen from "../screens/ProductListScreen";
 import ShoppingCartScreen from "../screens/ShoppingCartScreen";
 import {
@@ -55,6 +56,11 @@ function RootNavigator() {
         name="Root"
         component={BottomTabNavigator}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ProductDetail"
+        component={ProductDetailScreen}
+        options={{ title: "商品详情" }}
       />
       <Stack.Screen
         name="NotFound"

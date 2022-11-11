@@ -4,9 +4,15 @@ import { ScrollView } from "react-native";
 import { ProductItem } from "../components/ProductItem";
 
 import { View } from "../components/Themed";
+import { PRODUCT_LIST } from "../constants/DataSource";
 
-export default function ProductDetailScreen({ route, navigation }) {
-  const { record } = route.params;
+export default function ProductDetailScreen({ route }) {
+  const { id } = route.params;
+
+  const record = React.useMemo(() => {
+    const filter = PRODUCT_LIST.find((item) => item.id === id);
+    return filter;
+  }, [id]);
 
   return (
     <ScrollView
@@ -17,7 +23,7 @@ export default function ProductDetailScreen({ route, navigation }) {
       <View>
         <WhiteSpace />
         <WingBlank>
-          <ProductItem record={record} />
+          <ProductItem record={record} canNavigate={false} />
         </WingBlank>
         <WhiteSpace size="lg" />
       </View>

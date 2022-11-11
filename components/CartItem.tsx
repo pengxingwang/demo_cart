@@ -1,7 +1,7 @@
 import { Flex, Stepper, WhiteSpace } from "@ant-design/react-native";
 import React from "react";
-import { Image, StyleSheet } from "react-native";
-import { Text, View } from "../components/Themed";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Text } from "../components/Themed";
 import { ICartItem, useCart } from "../context/cartProvider";
 
 /**
@@ -11,14 +11,22 @@ import { ICartItem, useCart } from "../context/cartProvider";
 export const CartItem = ({
   record,
   index,
+  navigate,
 }: {
   record: ICartItem;
   index: number;
+  navigate: any;
 }) => {
   const { changeCartCount } = useCart();
 
+  const handleRouter = () => {
+    navigate("ProductDetail", {
+      id: record.id,
+    });
+  };
+
   return (
-    <View>
+    <TouchableOpacity onPress={handleRouter}>
       <Image
         style={styles.img}
         source={{
@@ -51,7 +59,7 @@ export const CartItem = ({
           </Text>
         </Flex.Item>
       </Flex>
-    </View>
+    </TouchableOpacity>
   );
 };
 
