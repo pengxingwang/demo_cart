@@ -1,7 +1,7 @@
 import { WhiteSpace, WingBlank } from "@ant-design/react-native";
 import { RouteProp } from "@react-navigation/native";
 import React from "react";
-import { ScrollView } from "react-native";
+import { KeyboardAvoidingView, ScrollView } from "react-native";
 import { ProductItem } from "../components/ProductItem";
 
 import { View } from "../components/Themed";
@@ -22,18 +22,20 @@ export default function ProductDetailScreen({
   }, [id]);
 
   return (
-    <ScrollView
-      automaticallyAdjustContentInsets={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-    >
-      <View>
-        <WhiteSpace />
-        <WingBlank>
-          <ProductItem record={record} />
-        </WingBlank>
-        <WhiteSpace size="lg" />
-      </View>
-    </ScrollView>
+    <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={150}>
+      <ScrollView
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
+        <View>
+          <WhiteSpace />
+          <WingBlank>
+            <ProductItem record={record} />
+          </WingBlank>
+          <WhiteSpace size="lg" />
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }

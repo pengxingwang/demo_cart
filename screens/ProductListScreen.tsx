@@ -1,7 +1,7 @@
 import { WhiteSpace, WingBlank } from "@ant-design/react-native";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { ScrollView } from "react-native";
+import { KeyboardAvoidingView, ScrollView } from "react-native";
 import { ProductItem } from "../components/ProductItem";
 
 import { Text, View } from "../components/Themed";
@@ -25,28 +25,30 @@ export default function ProductListScreen({
   );
 
   return (
-    <ScrollView
-      automaticallyAdjustContentInsets={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-    >
-      {isLoading && <Text>Loading...</Text>}
-      {isSuccess && (
-        <View>
-          {data?.map((item, index) => (
-            <View key={index}>
-              <WhiteSpace />
-              <WingBlank>
-                <ProductItem
-                  record={item}
-                  navigation={navigation as unknown as RootStackNavigation}
-                />
-              </WingBlank>
-              <WhiteSpace size="lg" />
-            </View>
-          ))}
-        </View>
-      )}
-    </ScrollView>
+    <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={150}>
+      <ScrollView
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
+        {isLoading && <Text>Loading...</Text>}
+        {isSuccess && (
+          <View>
+            {data?.map((item, index) => (
+              <View key={index}>
+                <WhiteSpace />
+                <WingBlank>
+                  <ProductItem
+                    record={item}
+                    navigation={navigation as unknown as RootStackNavigation}
+                  />
+                </WingBlank>
+                <WhiteSpace size="lg" />
+              </View>
+            ))}
+          </View>
+        )}
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }

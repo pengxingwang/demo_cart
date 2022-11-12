@@ -144,9 +144,10 @@ const styles = StyleSheet.create({
     color: "red",
   },
   input: {
+    borderWidth: 1,
+    borderRadius: 5,
     height: 40,
     margin: 12,
-    borderWidth: 1,
     padding: 10,
   },
 });
