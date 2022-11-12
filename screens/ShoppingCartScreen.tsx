@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   container: {
-    height: "90%",
+    height: "80%",
   },
   totalWrapper: {
     height: 50,

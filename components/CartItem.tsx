@@ -1,4 +1,5 @@
 import { Flex, Stepper, WhiteSpace } from "@ant-design/react-native";
+import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "../components/Themed";
@@ -18,7 +19,7 @@ export const CartItem = ({
   index: number;
   navigation: RootStackNavigation;
 }) => {
-  const { changeCartCount } = useCart();
+  const { changeCartCount, removeCart } = useCart();
 
   const handleRouter = () => {
     navigation.navigate("ProductDetail", {
@@ -26,8 +27,19 @@ export const CartItem = ({
     });
   };
 
+  const handleDelete = () => {
+    removeCart(record);
+  };
+
   return (
-    <TouchableOpacity onPress={handleRouter}>
+    <TouchableOpacity style={styles.container} onPress={handleRouter}>
+      <FontAwesome
+        onPress={handleDelete}
+        size={30}
+        style={styles.close}
+        name="close"
+        color="red"
+      />
       <Image
         style={styles.img}
         source={{
@@ -65,6 +77,15 @@ export const CartItem = ({
 };
 
 const styles = StyleSheet.create({
+  container: {
+    position: "relative",
+  },
+  close: {
+    position: "absolute",
+    zIndex: 10,
+    right: 2,
+    top: 2,
+  },
   img: {
     width: "100%",
     height: 300,
