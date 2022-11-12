@@ -103,7 +103,9 @@ function BottomTabNavigator() {
         component={ShoppingCartScreen}
         options={{
           title: "购物车",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="cart-plus" color={color} />
+          ),
         }}
       />
     </BottomTab.Navigator>

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MyTSProject",
-    "slug": "MyTSProject",
+    "name": "DemoCart",
+    "slug": "DemoCart",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -25,10 +25,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.pengxw.DemoCart"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f840cf9b-72c0-4c16-85bb-d2514b6dd7f7"
+      }
     }
   }
 }
